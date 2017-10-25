@@ -5,9 +5,6 @@
   "main": "lib/index.js",
   "author": "Jake Mensch",
   "license": "MIT",
-  "scripts": {
-    "install": "node lib/setup"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jmensch1/email-endpoint"

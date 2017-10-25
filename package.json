@@ -1,0 +1,21 @@
+{
+  "name": "email-endpoint",
+  "version": "1.0.0",
+  "description": "Instantly create an endpoint that sends emails to a specified address.",
+  "main": "lib/index.js",
+  "author": "Jake Mensch",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmensch1/email-endpoint"
+  },
+  "bin": {
+    "email-endpoint": "./bin/email-endpoint.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
+    "claudia": "^2.14.2",
+    "claudia-api-builder": "^2.5.1",
+    "minimist": "^1.2.0"
+  }
+}

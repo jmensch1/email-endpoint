@@ -5,6 +5,9 @@
   "main": "lib/index.js",
   "author": "Jake Mensch",
   "license": "MIT",
+  "scripts": {
+    "claudia": "claudia"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jmensch1/email-endpoint"

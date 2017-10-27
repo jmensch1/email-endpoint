@@ -6,7 +6,7 @@ const {
   listEndpoints,
   testEndpoint,
   destroyEndpoint
-} = require('../lib');
+} = require('../lib/actions');
 
 switch(argv._[0]) {
   case 'create':

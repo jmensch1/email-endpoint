@@ -6,7 +6,8 @@
   "author": "Jake Mensch",
   "license": "MIT",
   "scripts": {
-    "claudia": "claudia"
+    "claudia": "claudia",
+    "postinstall": "node ./lib/prepare"
   },
   "repository": {
     "type": "git",

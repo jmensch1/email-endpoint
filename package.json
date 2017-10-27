@@ -16,9 +16,7 @@
     "email-endpoint": "./bin/email-endpoint.js"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.1.4",
     "claudia": "^2.14.2",
-    "claudia-api-builder": "^2.5.1",
     "minimist": "^1.2.0"
   }
 }

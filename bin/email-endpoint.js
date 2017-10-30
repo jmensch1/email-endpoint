@@ -11,7 +11,6 @@ const {
 switch(argv._[0]) {
   case 'create':
     let { name, email, apiKey, region } = argv;
-
     if (!name)
       console.log('You must provide a non-blank name for the endpoint.');
     else if (!email)
@@ -20,7 +19,6 @@ switch(argv._[0]) {
       console.log('You must provide an api key');
     else
       createEndpoint(name, email, apiKey, region);
-
     break;
 
   case 'list':
@@ -45,6 +43,7 @@ switch(argv._[0]) {
 
   default:
     console.log("The first argument to email-endpoint must be 'create', 'list', 'test', or 'destroy'.");
+    break;
 }
 
 

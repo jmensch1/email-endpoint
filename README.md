@@ -52,13 +52,13 @@ request({
     text: 'Check the logs'
   },
   json: true
-}
+});
 ```
 
 Or via HTML form.
 ```
 <h3>Admin Contact Form</h3>
-<form action="https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest" method="POST">
+<form method="POST" action="https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest">
   Subject: <input type="text" name="subject"><br>
   Text: <input type="text" name="text"><br>
   <input type="submit" value="Submit">

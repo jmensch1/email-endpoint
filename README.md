@@ -77,6 +77,19 @@ $.ajax({
 });
 ```
 
+If the email doesn't maintain line breaks, or you want to use HTML tags in the email for whatever reason, you can convert the text to HTML and then send it with an `html` property instead of `text`:
+```
+request({
+  url: https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest,
+  method: 'post',
+  body: {
+    subject: 'HTML email',
+    html: text.replace(/\n/g, '<br /')  // replace \n characters with <br />
+  },
+  json: true
+});
+```
+
 ### Other commands
 
 ##### List your endpoints

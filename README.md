@@ -84,7 +84,7 @@ request({
   method: 'post',
   body: {
     subject: 'HTML email',
-    html: text.replace(/\n/g, '<br /')  // replace \n characters with <br />
+    html: text.replace(/\n/g, '<br/>')  // replace \n characters with <br/>
   },
   json: true
 });

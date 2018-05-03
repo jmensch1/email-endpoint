@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "claudia": "claudia",
-    "postinstall": "node ./lib/prepare"
+    "postinstall": "node ./lib/prepare",
+    "preuninstall": "node ./lib/uninstall"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "dependencies": {
     "claudia": "^2.14.2",
     "lengthy-logger": "^1.0.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "rimraf": "^2.6.2"
   }
 }

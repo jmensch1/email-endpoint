@@ -2,7 +2,7 @@
 Instantly create an endpoint that you can use to POST emails to yourself.
 
 ### How
-By automatically creating the necessary resources in your AWS account -- a lambda function, API gateway, and IAM role. The heavy lifting is done by [ClaudiaJS](https://claudiajs.com/). Emails are sent through [sendgrid](https://sendgrid.com/).
+The package automatically creates the necessary resources in your AWS account -- a lambda function, API gateway, and IAM role. The heavy lifting is done by [ClaudiaJS](https://claudiajs.com/). Emails are sent through [Sendgrid](https://sendgrid.com/).
 
 ### Why
 As a dev there are numerous situations in which it would be convenient to email yourself from code. You could set up a server for that -- but that takes too long and requires maintenance time and expenses. You could set up your own lambda function/API gateway combination, but that configuration process is a nightmare. Services like Mailgun are a step in the right direction, but you still need to send an API key with every email (not great for frontend code), and those services often require a credit card to get started, which is just annoying.
@@ -16,29 +16,39 @@ As a dev there are numerous situations in which it would be convenient to email 
 npm install -g email-endpoint
 ```
 
-### Basic Usage
-To create an endpoint, run the `create` command.
-```
->> email-endpoint create \
-  --name endpoint1 \                    (required, can be any alphanumeric string)
-  --email myemail@whatever.com \        (required, any valid email)
-  --apiKey xxxxxxxxxxxxxxxxxxx \        (required, your sendgrid api key)
-  --region us-east-1                    (optional, defaults to us-east-1)
-```
+### Commands
 
-The command will generate an endpoint and output the url.
+#### `email-endpoint create`
+Creates an endpoint and outputs the url. In order to create the endpoint, you will be prompted for the following:
 
-```
-ENDPOINT: https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest
-```
+  1. name -- a handle for the endpoint, e.g. the name of the app you're working on.
+  2. email -- the email you want to send to.
+  3. apiKey -- the Sendgrid api key you want to use.
+  4. region -- the AWS region you want to create the resources in. Defaults to `us-east-1`.
 
-Once you have the endpoint, you can send emails by POSTing the subject and text of the email. For example, you can email yourself using `curl`:
+You can create as many endpoints as you want, using different names/emails/apiKeys/regions as appropriate.
+
+#### `email-endpoint list`
+Lists the endpoints you have created.
+
+#### `email-endpoint test [endpoint name]`
+Sends a test email to the named endpoint.
+
+#### `email-endpoint destroy [endpoint name]`
+Destroys the named endpoint, removing the endpoint's resources on AWS.
+
+#### `email-endpoint help`
+Displays the available commands.
+
+### Usage
+
+Once you have an endpoint, you can send emails by POSTing the subject and text of the email to the endpoint's url. For example, you can email yourself using `curl`:
 
 ```
 >> curl \
   -H "Content-Type: application/json" \
   -X POST \
-  -d '{"subject":"hiya bud", "text":"the endpoint works!"}' \
+  -d '{"subject":"hiya bud", "text": "the endpoint works!"}' \
   https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest
 ```
 
@@ -77,32 +87,21 @@ $.ajax({
 });
 ```
 
-If the email doesn't maintain line breaks, or you want to use HTML tags in the email for whatever reason, you can convert the text to HTML and then send it with an `html` property instead of `text`:
+If the email doesn't maintain line breaks, or you want to use HTML tags in the email for whatever reason, just send the email with an `html` property instead of `text`:
 ```
 request({
   url: https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest,
   method: 'post',
   body: {
     subject: 'HTML email',
-    html: text.replace(/\n/g, '<br/>')  // replace \n characters with <br/>
+    html: text.replace(/\n/g, '<br/>')
   },
   json: true
 });
 ```
 
-### Other commands
+### Notes
 
-##### List your endpoints
-```
->> email-endpoint list
-```
+On installation, the package will create a folder called `.npm-email-endpoint` in your home directory to store data about your endpoints. This allows the package to continue working even if you upgrade or reinstall Node (or change Node versions using `nvm`). If you change machines, you can copy that folder into your home directory on the new machine, and the package will take data from that folder instead of creating a new one.
 
-##### Test an endpoint
-```
->> email-endpoint test --name [endpoint name]
-```
-
-##### Destroy an endpoint
-```
->> email-endpoint destroy --name [endpoint name]
-```
+Also, your sendgrid API key will be stored in plain text in the `.npm-email-endpoint` folder. If that's a problem...well, don't use the package.

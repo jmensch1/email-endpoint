@@ -2,13 +2,11 @@
 const path = require('path');
 const os = require('os');
 
-const DATA_DIR = os.homedir() ?
-                 path.join(os.homedir(), '.npm-email-endpoint') :
-                 path.join(__dirname, './data');
+const DATA_DIR = path.join(os.homedir(), '.npm-email-endpoint');
 
 module.exports = {
   claudiaCmd: 'npm run claudia --',
-
+  rootDir:    __dirname,
   dataDir:    DATA_DIR,
   appDir:     DATA_DIR + '/app',
   appFile:    'index',

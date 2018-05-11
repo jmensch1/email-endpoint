@@ -17,9 +17,10 @@
     "email-endpoint": "./bin/email-endpoint.js"
   },
   "dependencies": {
-    "claudia": "^2.14.2",
+    "claudia": "^4.0.0",
     "lengthy-logger": "^1.0.2",
     "minimist": "^1.2.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "rimraf": "^2.6.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "email-endpoint",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Instantly create an endpoint that sends emails to a specified address.",
   "main": "lib/index.js",
   "author": "Jake Mensch",

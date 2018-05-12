@@ -26,7 +26,7 @@ Creates an endpoint and outputs the url. In order to create the endpoint, you wi
   3. apiKey -- the Sendgrid api key you want to use.
   4. region -- the AWS region you want to create the resources in. Defaults to `us-east-1`.
 
-You can create as many endpoints as you want, using different names/emails/apiKeys/regions as appropriate.
+You can create as many endpoints as you want, using different emails/apiKeys/regions as appropriate. Each endpoint must have a unique name.
 
 #### `email-endpoint list`
 Lists the endpoints you have created.
@@ -55,7 +55,7 @@ Once you have an endpoint, you can send emails by POSTing the subject and text o
 Or from your Node script.
 ```
 request({
-  url: https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest,
+  url: 'https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest',
   method: 'post',
   body: {
     subject: 'The server restarted',
@@ -65,7 +65,7 @@ request({
 });
 ```
 
-Or via HTML form.
+Or on the client side, via HTML form.
 ```
 <h3>Admin Contact Form</h3>
 <form method="POST" action="https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest">
@@ -81,8 +81,8 @@ $.ajax({
   url: 'https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest',
   method: 'POST',
   data: {
-    subject: 'Hi there',
-    text: 'have an email'
+    subject: 'Error!',
+    text: error.stack
   }
 });
 ```
@@ -90,7 +90,7 @@ $.ajax({
 If the email doesn't maintain line breaks, or you want to use HTML tags in the email for whatever reason, just send the email with an `html` property instead of `text`:
 ```
 request({
-  url: https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest,
+  url: 'https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/latest',
   method: 'post',
   body: {
     subject: 'HTML email',
